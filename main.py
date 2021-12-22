@@ -16,12 +16,12 @@ def generate_certificate():
         image_width = im.width
         image_height = im.height
 
+        # Draw Image
+        d = ImageDraw.Draw(im)
+
         d = draw_name(d)
         d = draw_award(d)
         d = draw_reason(d)
-
-        # Draw Image
-        d = ImageDraw.Draw(im)
 
         # Saving Certificate
         # im.save("certificate_" + i + ".pdf")
