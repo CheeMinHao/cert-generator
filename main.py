@@ -19,15 +19,15 @@ def generate_certificate():
         # Draw Image
         d = ImageDraw.Draw(im)
 
-        d = draw_name(d)
-        d = draw_award(d)
-        d = draw_reason(d)
+        d = draw_name(d, i, image_width)
+        d = draw_award(d, i, image_width)
+        d = draw_reason(d, i, image_width)
 
         # Saving Certificate
         # im.save("certificate_" + i + ".pdf")
         im.save(f'certificates/certificate_{i}.pdf')
 
-def draw_name(drawing):
+def draw_name(drawing, name, image_width):
     # Specify Y-Axis Height, and Text Color (Adjust these according to your needs)
     y_axis_height = 285
     text_color = (0, 137, 209)
@@ -36,14 +36,14 @@ def draw_name(drawing):
     font = ImageFont.truetype("fonts/arial.ttf", 40)
 
     # Extracting text width
-    text_width, _ = drawing.textsize(i, font = font)
+    text_width, _ = drawing.textsize(name, font = font)
 
     # Writing text (Adjust calculation according to your needs)
-    drawing.text(((image_width - text_width) / 3, y_axis_height), i, fill = text_color, font = font)
+    drawing.text(((image_width - text_width) / 3, y_axis_height), name, fill = text_color, font = font)
 
     return drawing
 
-def draw_award(drawing):
+def draw_award(drawing, name, image_width):
     # Specify Y-Axis Height, and Text Color (Adjust these according to your needs)
     y_axis_height = 285
     text_color = (0, 137, 209)
@@ -52,14 +52,14 @@ def draw_award(drawing):
     font = ImageFont.truetype("fonts/arial.ttf", 20)
 
     # Extracting text width
-    text_width, _ = drawing.textsize(i, font = font)
+    text_width, _ = drawing.textsize(name, font = font)
 
     # Writing text (Adjust calculation according to your needs)
-    drawing.text(((image_width - text_width) / 3, y_axis_height), i, fill = text_color, font = font)
+    drawing.text(((image_width - text_width) / 3, y_axis_height), name, fill = text_color, font = font)
 
     return drawing
 
-def draw_reason(drawing):
+def draw_reason(drawing, name, image_width):
     # Specify Y-Axis Height, and Text Color (Adjust these according to your needs)
     y_axis_height = 285
     text_color = (0, 137, 209)
@@ -68,10 +68,10 @@ def draw_reason(drawing):
     font = ImageFont.truetype("fonts/arial.ttf", 20)
 
     # Extracting text width
-    text_width, _ = drawing.textsize(i, font = font)
+    text_width, _ = drawing.textsize(name, font = font)
 
     # Writing text (Adjust calculation according to your needs)
-    drawing.text(((image_width - text_width) / 3, y_axis_height), i, fill = text_color, font = font)
+    drawing.text(((image_width - text_width) / 3, y_axis_height), name, fill = text_color, font = font)
 
     return drawing
 
