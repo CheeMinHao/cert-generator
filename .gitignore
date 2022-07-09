@@ -1,2 +1,3 @@
 /venv/
-/certificates/
+/generated-certificates/
+/templates/

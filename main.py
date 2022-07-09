@@ -1,8 +1,13 @@
+import os
 import pandas as pd
 from PIL import Image, ImageDraw, ImageFont
 
 
-def generate_certificate():
+def generate_certificate(image, award, reason):
+
+    dir = "generated-certificates/"
+    for f in os.listdir(dir):
+        os.remove(os.path.join(dir, f))
 
     data = pd.read_csv("names.csv")
 
@@ -11,14 +16,11 @@ def generate_certificate():
     for i in range(len(name_list)):
 
         # Specify your certificate image route
-        im = Image.open("hello-coders-certificate.jpg")
+        im = Image.open(f"templates/{image}")
 
         # Extract Image width and height
         image_width = im.width
         image_height = im.height
-
-        award = '"Hello Coders" Mentorship Program'
-        reason = "18th October - 26th November 2021"
 
         # Draw Image
         d = ImageDraw.Draw(im)
@@ -47,7 +49,7 @@ def draw_name(drawing, name, image_width):
 
     # Writing text (Adjust calculation according to your needs)
     drawing.text(
-        ((image_width - text_width) / 3, y_axis_height),
+        ((image_width - text_width) / 2 - 155, y_axis_height),
         name,
         fill=text_color,
         font=font,
@@ -81,7 +83,7 @@ def draw_award(drawing, name, image_width):
 
     # Writing text (Adjust calculation according to your needs)
     drawing.text(
-        ((image_width - text_width) / 4.3, y_axis_height),
+        ((image_width - text_width) / 2 - 163, y_axis_height),
         name,
         fill=text_color,
         font=font,
@@ -111,15 +113,10 @@ def draw_date(drawing, name, image_width):
 
     # Writing text (Adjust calculation according to your needs)
     drawing.text(
-        ((image_width - text_width) / 3.3, y_axis_height),
+        ((image_width - text_width) / 2 - 164, y_axis_height),
         name,
         fill=text_color,
         font=font,
     )
 
     return drawing
-
-
-if __name__ == "__main__":
-    generate_certificate()
-    print("Certificates Generated!")
